@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Salary">
+    <Spinner
+        android:id="@+id/fIngreso"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02"
+        android:background="@drawable/box_material_sin"
+        android:inputType="none"
+        />
+
+    <!-- Cantidad Ingreso -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvCantidadIngreso"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="username"
+
+        android:hint="@string/cantAmount"
+        android:textColorHint="@color/black"
+        app:boxBackgroundMode="outline"
+        app:endIconMode="clear_text"
+        app:helperText="@string/amount"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fIngreso"
+        app:layout_constraintVertical_bias="0.05">
+
+
+
+    <com.google.android.material.textfield.TextInputEditText
+
+        android:id="@+id/etCantidadIngreso"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="numberDecimal"
+
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Calendario -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dni2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="username"
+
+        android:hint="@string/cantAmount"
+        android:textColorHint="@color/black"
+        app:boxBackgroundMode="outline"
+        app:endIconMode=""
+        app:helperText="@string/amount"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fIngreso"
+        app:layout_constraintVertical_bias="0.20">
+
+
+
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/dniU"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

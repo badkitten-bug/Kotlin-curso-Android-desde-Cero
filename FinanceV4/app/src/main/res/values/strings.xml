@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Finance</string>
+    <string name="user">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="cantAmount">Cantidad Ingreso</string>
+    <string name="amount">Ingreso</string>
+</resources>

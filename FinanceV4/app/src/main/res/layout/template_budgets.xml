@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSalary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        android:layout_width="334dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="15dp"
+        android:layout_height="151dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="26dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="400"
+                android:text="Ingresos"
+                android:textSize="25sp"
+                />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="#C1B9B9"
+                android:textSize="2sp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="104dp"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Salario"
+                    android:textSize="25sp"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#E5E5E5"/>
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="#C1B9B9"
+                android:textSize="2sp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+        </LinearLayout>
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBills"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardSalary"
+        app:layout_constraintVertical_bias="0.07"
+        android:layout_width="334dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="15dp"
+        android:layout_height="151dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="26dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="400"
+                android:text="Gastos"
+                android:textSize="25sp"
+                />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="#C1B9B9"
+                android:textSize="2sp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="104dp"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Gastos"
+                    android:textSize="25sp"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#E5E5E5"/>
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="#C1B9B9"
+                android:textSize="2sp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSavings"
+        android:layout_height="151dp"
+        android:layout_width="334dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardBills"
+        app:layout_constraintVertical_bias="0.15"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="15dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="26dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="400"
+                android:text="Ahorro"
+                android:textSize="25sp"
+                />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="#C1B9B9"
+                android:textSize="2sp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="104dp"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Ahorros"
+                    android:textSize="25sp"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#E5E5E5"/>
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="#C1B9B9"
+                android:textSize="2sp"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
