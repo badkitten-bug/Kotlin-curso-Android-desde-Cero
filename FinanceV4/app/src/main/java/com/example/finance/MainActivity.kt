@@ -1,5 +1,6 @@
 package com.example.finance
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,9 +42,18 @@ class MainActivity : AppCompatActivity() {
 
         register()
 
-        bLog.setOnClickListener(){
-            login()
+        val access = getSharedPreferences("login", Context.MODE_PRIVATE)
+        val sharedUser = access.getString("USER_KEY",null)
+
+        if(sharedUser == null){
+            bLog.setOnClickListener{ login() }
+        } else {
+            val intent = Intent(this, SplashActivity::class.java)
+            startActivity(intent)
+            finish()
         }
+
+
     }
 
     private fun initView(){
@@ -72,6 +82,7 @@ class MainActivity : AppCompatActivity() {
             if(userSP == user && passwordSP == contrasenia){
                 //evaluamos los datos registrados en bd sean iguales a los insertados en layout
                 // navigation between interfaces
+                saveSharedPreferences(userSP,  contrasenia)
                 val intent = Intent(this, SplashActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -86,12 +97,23 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun saveSharedPreferences(username: String, contrasenia:String){
+        val sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.apply{
+            putString("USER_KEY", username)
+            putString("PSW_KEY", contrasenia)
+        }.apply()
+    }
+
     private fun getFinanceUser(user: String, password: String):Boolean{
     //Obtener datos de usuario,valida la bd
         val financeUser: financeUserModel? = crud.selectUser(user, password)
         return financeUser?.equals(null) != true
 
     }
+
+
 
     private fun register(){
     // redirection to form register
@@ -100,6 +122,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
+        }
     }
-}
+

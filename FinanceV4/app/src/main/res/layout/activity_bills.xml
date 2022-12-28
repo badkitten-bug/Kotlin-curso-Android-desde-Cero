@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Salary">
+    tools:context=".Bills">
 
     <Spinner
         android:id="@+id/spTipo"
@@ -43,14 +43,14 @@
         app:layout_constraintTop_toBottomOf="@+id/spTipo"
         app:layout_constraintVertical_bias="0.1">
 
-    <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
 
-        android:id="@+id/etCantidadIngreso"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inputType="numberDecimal"
+            android:id="@+id/etCantidadIngreso"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
 
-        />
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,6 +104,55 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/imgScan"
+        android:layout_width="54dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="350dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgCalendar"
+        app:layout_constraintVertical_bias="0.20"
+        app:srcCompat="@drawable/ic_baseline_camera_alt_24"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvScan"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="username"
+
+        android:hint="@string/ndoc"
+        android:textColorHint="@color/black"
+        app:boxBackgroundMode="outline"
+        app:helperText="@string/scan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgScan"
+        app:layout_constraintTop_toBottomOf="@+id/tvFechaIngreso"
+        app:layout_constraintVertical_bias="0.1">
+
+
+
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/etScan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSalary"
         android:layout_width="wrap_content"
@@ -113,7 +162,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFechaIngreso"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvScan"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.finance
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -42,6 +43,8 @@ class Control : AppCompatActivity() {
         initView()
 
         viewSalary()
+
+        viewBills()
     }
 
 
@@ -65,10 +68,9 @@ class Control : AppCompatActivity() {
         when(item.itemId){
 
             R.id.icon_logout -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                logout()
                 return true
+
             }
 
             else -> {return super.onOptionsItemSelected(item)}
@@ -89,6 +91,14 @@ class Control : AppCompatActivity() {
 
     }
 
+    private fun viewBills(){
+        cardBills.setOnClickListener(){
+            val intent = Intent(this, Bills::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
     private fun initView(){
         //initializer views
         cardSalary = findViewById(R.id.cardSalary)
@@ -96,8 +106,15 @@ class Control : AppCompatActivity() {
         cardSavings = findViewById(R.id.cardSavings)
     }
 
-
-
+    private fun logout(){
+        val sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE)
+        val savedString = sharedPref.edit().remove("USER_KEY").commit()
+        if (savedString){
+            val intent = Intent(this, MainActivity()::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 
 
 }

@@ -10,3 +10,4 @@ class financeUserModel(user: String, password: String) {
         this.password = password
     }
 }
+

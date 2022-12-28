@@ -6,4 +6,11 @@
     <string name="register">Register</string>
     <string name="cantAmount">Cantidad Ingreso</string>
     <string name="amount">Ingreso</string>
+    <string name="fechaR">Fecha Registro</string>
+    <string name="fecha">Fecha</string>
+    <string name="detalle">Inserte el Tipo de Ingreso</string>
+    <string name="tipo">Tipo</string>
+    <string name="registro">Registrar</string>
+    <string name="ndoc">Nro. Docuemnto</string>
+    <string name="scan">Scan</string>
 </resources>

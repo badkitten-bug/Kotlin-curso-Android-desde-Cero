@@ -9,14 +9,16 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import com.example.finance.database.BillsCRUD
 import com.example.finance.database.SalaryCRUD
+import com.example.finance.model.financeBillsModel
 import com.example.finance.model.financeSalaryModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
-class Salary : AppCompatActivity() {
+class Bills : AppCompatActivity() {
 
     private lateinit var spTipo: Spinner
     private lateinit var tvCantidadIngreso: TextInputLayout
@@ -24,27 +26,26 @@ class Salary : AppCompatActivity() {
     private lateinit var imgCalendar: ImageView
     private lateinit var tvFechaIngreso: TextInputLayout
     private lateinit var etFechaIngreso: TextInputEditText
-    private lateinit var btnSalary: MaterialButton
+    private lateinit var btnBills: MaterialButton
 
-    private lateinit var crud: SalaryCRUD
+    private lateinit var crud: BillsCRUD
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_salary)
+        setContentView(R.layout.activity_bills)
 
-        crud = SalaryCRUD( this)
+        crud = BillsCRUD(this)
 
         initView()
 
-        initSpinnerSalary(this)
+        initSpinnerBills(this)
 
         openCalendar()
 
-        btnSalary.setOnClickListener{
-            registerSalary()
+        btnBills.setOnClickListener{
+            registerBills()
         }
-
     }
 
     private fun initView(){
@@ -55,13 +56,12 @@ class Salary : AppCompatActivity() {
         imgCalendar = findViewById(R.id.imgCalendar)
         tvFechaIngreso = findViewById(R.id.tvFechaIngreso)
         etFechaIngreso = findViewById(R.id.etFechaIngreso)
-        btnSalary = findViewById(R.id.btnSalary)
+        btnBills = findViewById(R.id.btnSalary)
 
         etFechaIngreso.isEnabled = false
-
     }
 
-    private fun initSpinnerSalary(context: Context){
+    private fun initSpinnerBills(context: Context){
         val lisType = arrayOf("Sueldo", "Empresa")
         val listSP = arrayListOf<String>()
 
@@ -74,7 +74,6 @@ class Salary : AppCompatActivity() {
         spTipo.adapter = adaptador
 
     }
-
     private fun openCalendar(){
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -82,22 +81,21 @@ class Salary : AppCompatActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         imgCalendar.setOnClickListener {
-            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, myear, mmonth, mday ->
+            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{ view, myear, mmonth, mday ->
 
                 etFechaIngreso.setText("$myear/${mmonth + 1}/$mday")
 
             }, year, month, day).show()
 
         }
-
     }
 
-    private fun registerSalary(){
+    private fun registerBills(){
         val tipo = spTipo.selectedItem.toString().trim()
         val cantidadIngreso = etCantidadIngreso.text.toString().toFloat()
         val fechaIngreso = etFechaIngreso.text.toString().trim()
 
-        val status = crud.insertSalary(financeSalaryModel(idSalary = null, salaryType = tipo, cant = cantidadIngreso, dateSalary = fechaIngreso))
+        val status = crud.insertBills(financeBillsModel(idBills = null, billsType = tipo, cant = cantidadIngreso, dateBills = fechaIngreso))
         if(status > -1){
             Toast.makeText(this,"Ingreso agregado", Toast.LENGTH_SHORT).show()
 
@@ -105,7 +103,6 @@ class Salary : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
     }
-
-
 }
