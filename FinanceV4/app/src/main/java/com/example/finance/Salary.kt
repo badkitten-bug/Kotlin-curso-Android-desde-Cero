@@ -1,5 +1,6 @@
 package com.example.finance
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -10,7 +11,7 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import com.example.finance.database.SalaryCRUD
-import com.example.finance.model.financeSalaryModel
+import com.example.finance.model.FinanceSalaryModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -75,6 +76,7 @@ class Salary : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun openCalendar(){
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -82,7 +84,7 @@ class Salary : AppCompatActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         imgCalendar.setOnClickListener {
-            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, myear, mmonth, mday ->
+            DatePickerDialog(this, { _, myear, mmonth, mday ->
 
                 etFechaIngreso.setText("$myear/${mmonth + 1}/$mday")
 
@@ -97,7 +99,7 @@ class Salary : AppCompatActivity() {
         val cantidadIngreso = etCantidadIngreso.text.toString().toFloat()
         val fechaIngreso = etFechaIngreso.text.toString().trim()
 
-        val status = crud.insertSalary(financeSalaryModel(idSalary = null, salaryType = tipo, cant = cantidadIngreso, dateSalary = fechaIngreso))
+        val status = crud.insertSalary(FinanceSalaryModel(idSalary = null, salaryType = tipo, cant = cantidadIngreso, dateSalary = fechaIngreso))
         if(status > -1){
             Toast.makeText(this,"Ingreso agregado", Toast.LENGTH_SHORT).show()
 

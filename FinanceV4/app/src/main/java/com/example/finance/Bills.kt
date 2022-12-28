@@ -1,21 +1,22 @@
 package com.example.finance
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.finance.database.BillsCRUD
-import com.example.finance.database.SalaryCRUD
 import com.example.finance.model.financeBillsModel
-import com.example.finance.model.financeSalaryModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 import java.util.*
 
 class Bills : AppCompatActivity() {
@@ -26,6 +27,9 @@ class Bills : AppCompatActivity() {
     private lateinit var imgCalendar: ImageView
     private lateinit var tvFechaIngreso: TextInputLayout
     private lateinit var etFechaIngreso: TextInputEditText
+    private lateinit var imgScan: ImageView
+    private lateinit var tvScan: TextInputLayout
+    private lateinit var etScan: TextInputEditText
     private lateinit var btnBills: MaterialButton
 
     private lateinit var crud: BillsCRUD
@@ -46,6 +50,10 @@ class Bills : AppCompatActivity() {
         btnBills.setOnClickListener{
             registerBills()
         }
+
+        imgScan.setOnClickListener{
+            initScanner()
+        }
     }
 
     private fun initView(){
@@ -57,12 +65,15 @@ class Bills : AppCompatActivity() {
         tvFechaIngreso = findViewById(R.id.tvFechaIngreso)
         etFechaIngreso = findViewById(R.id.etFechaIngreso)
         btnBills = findViewById(R.id.btnSalary)
+        imgScan = findViewById(R.id.imgScan)
+        tvScan = findViewById(R.id.tvScan)
+        etScan = findViewById(R.id.etScan)
 
         etFechaIngreso.isEnabled = false
     }
 
     private fun initSpinnerBills(context: Context){
-        val lisType = arrayOf("Sueldo", "Empresa")
+        val lisType = arrayOf("Gasto Hormiga", "Gastos Generales")
         val listSP = arrayListOf<String>()
 
         for(element in lisType){
@@ -74,6 +85,8 @@ class Bills : AppCompatActivity() {
         spTipo.adapter = adaptador
 
     }
+
+    @SuppressLint("SetTextI18n")
     private fun openCalendar(){
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -81,7 +94,7 @@ class Bills : AppCompatActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         imgCalendar.setOnClickListener {
-            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{ view, myear, mmonth, mday ->
+            DatePickerDialog(this, { _, myear, mmonth, mday ->
 
                 etFechaIngreso.setText("$myear/${mmonth + 1}/$mday")
 
@@ -94,8 +107,9 @@ class Bills : AppCompatActivity() {
         val tipo = spTipo.selectedItem.toString().trim()
         val cantidadIngreso = etCantidadIngreso.text.toString().toFloat()
         val fechaIngreso = etFechaIngreso.text.toString().trim()
+        val codDoc = etScan.text.toString().trim()
 
-        val status = crud.insertBills(financeBillsModel(idBills = null, billsType = tipo, cant = cantidadIngreso, dateBills = fechaIngreso))
+        val status = crud.insertBills(financeBillsModel(idBills = null, billsType = tipo, cant = cantidadIngreso, dateBills = fechaIngreso, codDoc = codDoc))
         if(status > -1){
             Toast.makeText(this,"Ingreso agregado", Toast.LENGTH_SHORT).show()
 
@@ -104,5 +118,24 @@ class Bills : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun initScanner(){
+        val integrator = IntentIntegrator(this)
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+        integrator.setTorchEnabled(false)
+        integrator.setBeepEnabled(true)
+        integrator.initiateScan()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val result: IntentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+        if(result.contents == null){
+            Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
+        }else{
+            etScan.setText(result.contents)
+        }
     }
 }

@@ -1,8 +1,7 @@
 package com.example.finance.model
 
-import com.example.finance.database.FinanceContract
 
-class financeSalaryModel (idSalary: Int?, salaryType: String, cant: Float?, dateSalary: String?) {
+class FinanceSalaryModel (idSalary: Int?, salaryType: String, cant: Float?, dateSalary: String?) {
 
     var idSalary: Int? = null
     var salaryType: String? = null

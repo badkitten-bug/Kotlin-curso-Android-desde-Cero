@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.example.finance.model.financeSalaryModel
+import com.example.finance.model.FinanceSalaryModel
 
 class SalaryCRUD(context: Context) {
     private var helper:SQLiteOpenHelper? = null
@@ -13,7 +13,7 @@ class SalaryCRUD(context: Context) {
         helper = SQLiteOpenHelper(context)
     }
 
-    fun insertSalary(salary: financeSalaryModel): Long{
+    fun insertSalary(salary: FinanceSalaryModel): Long{
         val db:SQLiteDatabase =helper?.writableDatabase!!
 
         val contentValues = ContentValues()
@@ -22,6 +22,7 @@ class SalaryCRUD(context: Context) {
         contentValues.put(FinanceContract.Companion.Salary.cant,salary.cant)
         contentValues.put(FinanceContract.Companion.Salary.dateSalary, salary.dateSalary)
 
+
         val success = db.insert(FinanceContract.Companion.Salary.TBLSALARY,null,contentValues)
         db.close()
 
@@ -29,8 +30,8 @@ class SalaryCRUD(context: Context) {
 
     }
 
-    fun selectType():financeSalaryModel?{
-        var item: financeSalaryModel? = null
+    fun selectType():FinanceSalaryModel?{
+        var item: FinanceSalaryModel? = null
 
         val db: SQLiteDatabase = helper?.readableDatabase!!
 
@@ -51,7 +52,7 @@ class SalaryCRUD(context: Context) {
         )
         while (c.moveToNext()){
             item =
-                financeSalaryModel(
+                FinanceSalaryModel(
                     c.getInt(c.getColumnIndexOrThrow(FinanceContract.Companion.Salary.idSalary)),
                     c.getString(c.getColumnIndexOrThrow(FinanceContract.Companion.Salary.salaryType)),
                     c.getFloat(c.getColumnIndexOrThrow(FinanceContract.Companion.Salary.cant)),

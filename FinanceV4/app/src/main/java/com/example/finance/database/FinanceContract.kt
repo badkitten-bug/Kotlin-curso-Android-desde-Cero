@@ -32,6 +32,17 @@ class FinanceContract {
             }
         }
 
+        class Bills: BaseColumns {
+            companion object{
+                const val TBLBILLS = "bills"
+                const val idBills = "idBills"
+                const val billsType = "tipo"
+                const val cant = "cantidad"
+                const val dateBills = "fecha"
+                const val codDoc = "codigo"
+            }
+        }
+
 
     }
 }
